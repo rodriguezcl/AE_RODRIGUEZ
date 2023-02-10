@@ -1,0 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#carouselExampleFade {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100vw;
+  height: min-content;
+  background-color: #d90368;
+  text-align: center;
+ padding: 2vh;
+}
+
+#btn-carousel{
+    text-decoration: none;
+    color: white;
+}
