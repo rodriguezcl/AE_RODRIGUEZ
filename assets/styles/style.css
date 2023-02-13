@@ -12,10 +12,22 @@
   height: min-content;
   background-color: #d90368;
   text-align: center;
- padding: 2vh;
+  padding: 2vh;
 }
 
-#btn-carousel{
-    text-decoration: none;
-    color: white;
+#btn-carousel {
+  text-decoration: none;
+  color: white;
+}
+
+#toolbar {
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  padding: 2vh;
+}
+
+.form-check-input,
+.form-check-label {
+  margin-left: 1vw;
 }
