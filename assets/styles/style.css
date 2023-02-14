@@ -24,6 +24,20 @@ main{
   padding-left: 2vw;
   padding-right: 2vw;
   padding-bottom: 6vw;
+  width: 100%;
+  height: 150vh;
+}
+
+#mainContact{
+  height: 72vh;
+}
+
+#mainStats{
+  min-height: 100vh;
+}
+
+main>form{
+  padding-top: 2vh;
 }
 
 #toolbar {
@@ -46,4 +60,20 @@ main{
 
 .text-muted{
   padding: 4px 8px;
+}
+
+.nav-link:hover{
+  color: black;
+  font-weight: bolder;
+  transform: scale(101%);
+}
+
+table{
+  margin-top: 4vh;
+}
+
+thead{
+  background-color: #d90368;
+  color: white;
+  font-weight: bolder;
 }
