@@ -29,7 +29,7 @@ main{
 }
 
 #mainContact{
-  height: 72vh;
+  min-height: 72vh;
 }
 
 #mainStats{
