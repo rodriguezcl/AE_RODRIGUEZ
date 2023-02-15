@@ -25,7 +25,7 @@ main{
   padding-right: 2vw;
   padding-bottom: 6vw;
   width: 100%;
-  height: 205vh;
+  min-height: 205vh;
 }
 
 #mainContact{
@@ -34,6 +34,13 @@ main{
 
 #mainStats{
   min-height: 100vh;
+}
+
+#mainDetails{
+  display: flex;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 8vh;
 }
 
 main>form{
