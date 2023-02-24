@@ -75,4 +75,25 @@ table{
   height: 50%;
 }
 
+#carouselExampleFade{
+  display: flex;
+justify-content: space-between;  
+}
 
+.arrowNav{
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.nameNav{
+  font-size: 40px  !important;
+  color: white;
+  text-decoration: none;
+}
+
+#carouselExampleFade{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
