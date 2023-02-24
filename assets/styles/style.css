@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  width: 100vw;
+  width: 100%;
   height: min-content;
   background-color: #d90368;
   text-align: center;
@@ -24,22 +24,13 @@ main{
   padding-left: 2vw;
   padding-right: 2vw;
   padding-bottom: 6vw;
-  width: 100%;
-  min-height: 205vh;
-}
-
-#mainContact{
-  min-height: 72vh;
-}
-
-#mainStats{
   min-height: 100vh;
 }
+
 
 #mainDetails{
   display: flex;
   justify-content: center;
-  min-height: 80vh;
   padding: 8vh;
 }
 
@@ -78,3 +69,10 @@ main>form{
 table{
   margin-top: 4vh;
 }
+
+.card-img-top{
+  width: 100%;
+  height: 50%;
+}
+
+
