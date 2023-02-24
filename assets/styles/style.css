@@ -21,9 +21,9 @@
 }
 
 main{
-  padding-left: 2vw;
   padding-right: 2vw;
-  padding-bottom: 6vw;
+  padding-bottom: 2vw;
+  padding-left: 2vw;
   min-height: 100vh;
 }
 
