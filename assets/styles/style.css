@@ -97,3 +97,9 @@ justify-content: space-between;
   justify-content: space-between;
   align-items: center;
 }
+
+div>.card-body{
+  background-color: #060047;
+  color: white;
+}
+
