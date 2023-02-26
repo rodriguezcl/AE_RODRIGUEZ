@@ -115,3 +115,13 @@ div>.card-body{
 div>.card-img-top{
   height: 250px;
 }
+
+#mainDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+#img-details{
+  height: 50%;
+}
