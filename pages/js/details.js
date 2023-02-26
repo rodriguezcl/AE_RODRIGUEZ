@@ -31,3 +31,4 @@ function verDetails(array, contenedor) {
   contenedor.appendChild(fragment)
 }
 verDetails(data.events, container)
+
