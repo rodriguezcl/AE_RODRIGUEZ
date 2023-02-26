@@ -189,7 +189,7 @@ function imprimirCards(array, contenedor) {
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">Price: $${producto.price}</small>
-                        <a type="button" class="btn btn-primary btn-sm" href="./pages/details.html">Ver mas</a>
+                        <a type="button" class="btn btn-primary btn-sm" href="./pages/details.html">See more</a>
                     </div>
                     </div>
                 </div>

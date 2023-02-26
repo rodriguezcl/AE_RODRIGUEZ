@@ -43,7 +43,7 @@ div>.btn-group{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   align-content: center;
   width: 100%;
   min-height: 5vh;
