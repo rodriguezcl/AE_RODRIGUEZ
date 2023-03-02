@@ -1,3 +1,5 @@
+//------------ FUNCION IMPRIMIR CARDS -------
+
 let container = document.getElementById("container")
 const fragment = document.createDocumentFragment();
 
@@ -23,13 +25,18 @@ function imprimirCards(array, contenedor) {
   contenedor.appendChild(fragment)
 }
 
+//----------- FIN FUNCION IMPRIMIR CARDS -------
+
 //---------- FILTRO UPCOMING ---------------
 
 const filterUpcoming = data.events.filter(evento => data.currentDate < evento.date)
 
-imprimirCards(filterUpcoming, container)
+//---------- FIN FILTRO UPCOMING -----------
 
-//-------------- IMPRIMIR CHECKS DESDE ARRAY ----------------
+
+imprimirCards(filterUpcoming, container) //<-------- IMPRIME LAS CARDS
+
+//-------------- FUNCION IMPRIMIR CHECKS ----------------
 
 let btnGroup = document.getElementById("btn-group1")
 
@@ -49,11 +56,14 @@ function imprimirChecks(array, contenedor) {
   contenedor.appendChild(fragment)
 }
 
+//------------FIN FUNCION IMPRIMIR CHECKS ---------------
+
 //---------- FILTRO CHECKS ---------------
 
 const categories = data.events.map(evento => evento.category);
 const filterCategories = categories.filter((category, index) => categories.indexOf(category) === index);
-console.log(filterCategories);
+
+//-----------FIN FILTRO CHECKS ----------
 
 
-imprimirChecks(filterCategories, btnGroup)
+imprimirChecks(filterCategories, btnGroup) //<------ IMPRIME LOS CHECKS
