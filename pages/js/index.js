@@ -82,10 +82,10 @@ const filterAndPrint =  (array) =>{
     return arrayFiltered
 }
 
-//  $search.addEventListener('keyup', (e) =>{
-//     let dataFilter = filterSearch(data.events, e.target.value)
-//     createCards(dataFilter, $container)
-// })
+ $search.addEventListener('keyup', (e) =>{
+    let dataFilter = filterSearch(data.events, e.target.value)
+    createCards(dataFilter, $container)
+})
 
 $checkbox.addEventListener('change', (e)=>{
     // let dataFilter = filterChecks(data.events)
