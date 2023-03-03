@@ -49,8 +49,8 @@ const createChecks = (array, container) => {
     array.forEach( category=>{
       let div = document.createElement('div');
           div.innerHTML += `<div class="category checks-container ${category.toLowerCase()}">
-                          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault ${category.toLowerCase()}">
-                          <label class="form-check-label" for="flexCheckDefault ${category.toLowerCase()}">
+                          <input class="form-check-input" type="checkbox" value="" id="${category.toLowerCase()}">
+                          <label class="form-check-label" for="${category.toLowerCase()}">
                               ${category}
                           </label>
       
@@ -71,9 +71,8 @@ const filterSearch = (array, value) => {
 
 const filterChecks = (array) => {
     let checked = document.querySelectorAll('input[type="checkbox"]:checked');
-    console.log(checked)
-    //  let filteredArray = array.filter(element => element.category.toLowerCase().includes(checked.id.toLowerCase()))
-    //  return filteredArray
+    let filteredArray = array.filter(element => Array.from(checked).some(check => check.id.toLowerCase() === element.category.toLowerCase()));
+    return filteredArray
 }
 
 const filterAndPrint =  (array) =>{
@@ -87,10 +86,9 @@ const filterAndPrint =  (array) =>{
     createCards(dataFilter, $container)
 })
 
-$checkbox.addEventListener('change', (e)=>{
-    // let dataFilter = filterChecks(data.events)
-    // createCards(dataFilter, $container)
-    console.log(e);
+$checkbox.addEventListener('change', ()=>{
+    let dataFilter = filterChecks(data.events)
+    createCards(dataFilter, $container)
     filterChecks (data.events)
 }) 
 
