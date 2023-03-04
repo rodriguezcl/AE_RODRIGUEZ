@@ -1,5 +1,5 @@
+import data from './amazing.js'
 import { createCards, createCategories, createChecks, filterSearch, filterChecks, filterAndPrint } from './funciones.js';
-
 
 //---------- FILTRO PAST ---------------
 
