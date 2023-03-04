@@ -1,7 +1,6 @@
 import data from './amazing.js'
 import { createCards, createCategories, createChecks, filterSearch, filterChecks, filterAndPrint } from './funciones.js';
 
-
 const $container = document.getElementById('container');
 const $checkbox = document.getElementById('btn-group1');
 const $search = document.querySelector('input[placeholder="Search"]');

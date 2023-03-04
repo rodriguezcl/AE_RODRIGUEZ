@@ -68,3 +68,33 @@ export const filterAndPrint = (array) => {
     return arrayFiltered
 }
 
+export const createDetails = (array, contenedor) => {
+    contenedor.innerHTML = ""
+    array.forEach((evento) => {
+        let div = document.createElement('div');
+        div.innerHTML += `
+    <div class="col">
+        <div class="card h-100">
+            <img src="${evento.image}" id="img-details" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${evento.name}</h5>
+                <p class="card-text">Category: ${evento.category}</p>
+                <p class="card-text">Date: ${evento.date}</p>
+                <p class="card-text">Description: ${evento.description}</p>
+                <p class="card-text">Category: ${evento.category}</p>
+                <p class="card-text">Place: ${evento.place}</p>
+                <p class="card-text">Capacity: ${evento.capacity}</p>
+                <p class="card-text">Assistance: ${evento.assistance}</p>
+
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Price: $${evento.price}</small>
+            </div>
+        </div>
+    </div>
+    `
+        fragment.appendChild(div)
+    })
+    contenedor.appendChild(fragment)
+}
+
