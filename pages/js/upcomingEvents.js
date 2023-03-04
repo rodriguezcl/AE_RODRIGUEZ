@@ -8,7 +8,6 @@ const filterUpcoming = data.events.filter(evento => data.currentDate < evento.da
 //---------- FIN FILTRO UPCOMING -----------
 
 const $container = document.getElementById('container');
-const fragment = document.createDocumentFragment();
 const $checkbox = document.getElementById('btn-group1');
 const $search = document.querySelector('input[placeholder="Search"]');
 
@@ -18,13 +17,15 @@ let categories = createCategories(filterUpcoming)
 
 createChecks(categories, $checkbox)
 
-$search.addEventListener('keyup', (e) =>{
+$search.addEventListener('keyup', (e) => {
     let dataFilter = filterSearch(filterUpcoming, e.target.value)
     createCards(dataFilter, $container)
 })
 
-$checkbox.addEventListener('change', ()=>{
+$checkbox.addEventListener('change', () => {
     let dataFilter = filterChecks(filterUpcoming)
     createCards(dataFilter, $container)
-    filterChecks (filterUpcoming)
-}) 
+    filterChecks(filterUpcoming)
+})
+
+filterAndPrint(filterUpcoming)

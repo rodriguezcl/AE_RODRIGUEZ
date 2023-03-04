@@ -1,13 +1,10 @@
-const $container = document.getElementById('container');
 const fragment = document.createDocumentFragment();
-const $checkbox = document.getElementById('btn-group1');
-const $search = document.querySelector('input[placeholder="Search"]');
 
 export const createCards = (array, contenedor) => {
-  contenedor.innerHTML = ""
-    array.forEach((evento)=>{
-      let div = document.createElement('div');
-      div.innerHTML += `<div class="col">
+    contenedor.innerHTML = ""
+    array.forEach((evento) => {
+        let div = document.createElement('div');
+        div.innerHTML += `<div class="col">
           <div class="card h-100">
           <img src="${evento.image}" class="card-img-top" alt="...">
                       <div class="card-body">
@@ -21,27 +18,27 @@ export const createCards = (array, contenedor) => {
                       </div>
                   </div>
                   `
-      fragment.appendChild(div)
+        fragment.appendChild(div)
     })
     contenedor.appendChild(fragment)
-  }
+}
 
-export const createCategories = (array) =>{
-    let categories = array.map(category=> category.category)
+export const createCategories = (array) => {
+    let categories = array.map(category => category.category)
 
-    categories = categories.reduce((acumulador, elemento)=>{
-        if(!acumulador.includes(elemento)){
+    categories = categories.reduce((acumulador, elemento) => {
+        if (!acumulador.includes(elemento)) {
             acumulador.push(elemento);
         }
         return acumulador
     }, [])
-    return categories 
+    return categories
 }
 
 export const createChecks = (array, container) => {
-    array.forEach( category=>{
-      let div = document.createElement('div');
-          div.innerHTML += `<div class="category checks-container ${category.toLowerCase()}">
+    array.forEach(category => {
+        let div = document.createElement('div');
+        div.innerHTML += `<div class="category checks-container ${category.toLowerCase()}">
                           <input class="form-check-input" type="checkbox" value="" id="${category.toLowerCase()}">
                           <label class="form-check-label" for="${category.toLowerCase()}">
                               ${category}
@@ -49,14 +46,14 @@ export const createChecks = (array, container) => {
       
                       </div>
                       `
-          fragment.appendChild(div)
-        })
-        container.appendChild(fragment)
-      }
+        fragment.appendChild(div)
+    })
+    container.appendChild(fragment)
+}
 
 export const filterSearch = (array, value) => {
-        let filteredArray = array.filter(element=> element.name.toLowerCase().includes(value.toLowerCase()))
-            return filteredArray
+    let filteredArray = array.filter(element => element.name.toLowerCase().includes(value.toLowerCase()))
+    return filteredArray
 }
 
 export const filterChecks = (array) => {
@@ -65,7 +62,7 @@ export const filterChecks = (array) => {
     return filteredArray
 }
 
-export const filterAndPrint =  (array) =>{
+export const filterAndPrint = (array) => {
     let arrayFiltered = filterSearch(array, $search.value)
     arrayFiltered = filterChecks(arrayFiltered)
     return arrayFiltered
