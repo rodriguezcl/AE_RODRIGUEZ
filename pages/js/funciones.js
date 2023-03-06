@@ -1,4 +1,6 @@
 const fragment = document.createDocumentFragment();
+const $search = document.querySelector('input[placeholder="Search"]');
+
 
 export const createCards = (array, contenedor) => {
     contenedor.innerHTML = ""
