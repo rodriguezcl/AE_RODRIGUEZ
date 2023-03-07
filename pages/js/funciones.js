@@ -77,7 +77,7 @@ export const createChecks = (array, container) => {
 }
 
 export const filterSearch = (array, value) => {
-    let filteredArray = array.filter(element => element.name.toLowerCase().includes(value.toLowerCase()))
+    let filteredArray = array.filter(element => element.name.toLowerCase().includes(value.toLowerCase().trim()))
     return filteredArray
 }
 
