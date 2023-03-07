@@ -105,7 +105,6 @@ export const createDetails = (evento, contenedor) => {
                 <p class="card-text">Category: ${evento.category}</p>
                 <p class="card-text">Date: ${evento.date}</p>
                 <p class="card-text">Description: ${evento.description}</p>
-                <p class="card-text">Category: ${evento.category}</p>
                 <p class="card-text">Place: ${evento.place}</p>
                 <p class="card-text">Capacity: ${evento.capacity}</p>
                 <p class="card-text">Assistance: ${evento.assistance}</p>

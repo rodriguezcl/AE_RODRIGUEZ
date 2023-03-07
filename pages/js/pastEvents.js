@@ -19,12 +19,12 @@ createChecks(categories, $checkbox)
 
 $search.addEventListener('keyup', (e) => {
     let dataFilter = filterSearch(filterPast, e.target.value)
-    createCards(dataFilter, $container)
+    createCardsUpcomingPast(dataFilter, $container)
 })
 
 $checkbox.addEventListener('change', () => {
     let dataFilter = filterChecks(filterPast)
-    createCards(dataFilter, $container)
+    createCardsUpcomingPast(dataFilter, $container)
     filterChecks(filterPast)
 })
 
