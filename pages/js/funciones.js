@@ -15,7 +15,30 @@ export const createCards = (array, contenedor) => {
                       </div>
                       <div class="card-footer">
                           <small class="text-muted">Price: $${evento.price}</small>
-                          <a type="button" class="btn btn-primary btn-sm" href="./pages/details.html">See more</a>
+                          <a type="button" class="btn btn-primary btn-sm" href="./pages/details.html?id=${evento._id}"">See more</a>
+                      </div>
+                      </div>
+                  </div>
+                  `
+        fragment.appendChild(div)
+    })
+    contenedor.appendChild(fragment)
+}
+
+export const createCardsUpcomingPast = (array, contenedor) => {
+    contenedor.innerHTML = ""
+    array.forEach((evento) => {
+        let div = document.createElement('div');
+        div.innerHTML += `<div class="col">
+          <div class="card h-100">
+          <img src="${evento.image}" class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">${evento.name}</h5>
+                          <p class="card-text">Category: ${evento.category}</p>
+                      </div>
+                      <div class="card-footer">
+                          <small class="text-muted">Price: $${evento.price}</small>
+                          <a type="button" class="btn btn-primary btn-sm" href="./details.html?id=${evento._id}"">See more</a>
                       </div>
                       </div>
                   </div>
@@ -70,11 +93,10 @@ export const filterAndPrint = (array) => {
     return arrayFiltered
 }
 
-export const createDetails = (array, contenedor) => {
-    contenedor.innerHTML = ""
-    array.forEach((evento) => {
-        let div = document.createElement('div');
-        div.innerHTML += `
+export const createDetails = (evento, contenedor) => {
+
+    let div = document.createElement('div');
+    div.innerHTML += `
     <div class="col">
         <div class="card h-100">
             <img src="${evento.image}" id="img-details" class="card-img-top" alt="...">
@@ -95,8 +117,7 @@ export const createDetails = (array, contenedor) => {
         </div>
     </div>
     `
-        fragment.appendChild(div)
-    })
+    fragment.appendChild(div)
     contenedor.appendChild(fragment)
 }
 

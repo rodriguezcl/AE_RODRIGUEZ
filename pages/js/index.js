@@ -17,10 +17,10 @@ $search.addEventListener('keyup', (e) => {
 })
 
 $checkbox.addEventListener('change', () => {
-    let dataFilter = filterChecks(data.events)
+    let dataFilter = filterAndPrint(data.events)
     createCards(dataFilter, $container)
     filterChecks(data.events)
 })
 
-filterAndPrint(data.events)
 
+console.log([document]);

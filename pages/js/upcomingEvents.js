@@ -1,5 +1,5 @@
 import data from './amazing.js'
-import { createCards, createCategories, createChecks, filterSearch, filterChecks, filterAndPrint } from './funciones.js';
+import { createCardsUpcomingPast, createCategories, createChecks, filterSearch, filterChecks, filterAndPrint } from './funciones.js';
 
 
 //---------- FILTRO UPCOMING ---------------
@@ -12,7 +12,7 @@ const $container = document.getElementById('container');
 const $checkbox = document.getElementById('btn-group1');
 const $search = document.querySelector('input[placeholder="Search"]');
 
-createCards(filterUpcoming, $container)
+createCardsUpcomingPast(filterUpcoming, $container)
 
 let categories = createCategories(filterUpcoming)
 
