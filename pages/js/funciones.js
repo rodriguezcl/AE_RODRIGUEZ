@@ -64,7 +64,7 @@ export const createChecks = (array, container) => {
     array.forEach(category => {
         let div = document.createElement('div');
         div.innerHTML += `<div class="category checks-container ${category.toLowerCase()}">
-                          <input class="form-check-input" type="checkbox" value="" id="${category.toLowerCase()}">
+                          <input class="form-check-input" type="checkbox" value="${category.toLowerCase()}" id="${category.toLowerCase()}">
                           <label class="form-check-label" for="${category.toLowerCase()}">
                               ${category}
                           </label>
@@ -83,12 +83,20 @@ export const filterSearch = (array, value) => {
 
 export const filterChecks = (array) => {
     let checked = document.querySelectorAll('input[type="checkbox"]:checked');
-    let filteredArray = array.filter(element => Array.from(checked).some(check => check.id.toLowerCase() === element.category.toLowerCase()));
+    let filteredArray = array
+    if (checked.length > 0) {
+        filteredArray = []
+        for (let i= 0; i < checked.length; i++) {
+            filteredArray = filteredArray.concat(array.filter(e => e.category.toLowerCase().includes(checked[i].id)))
+            console.log('filterchecks:', filteredArray);
+        }
+    }
     return filteredArray
 }
 
 export const filterAndPrint = (array) => {
     let arrayFiltered = filterSearch(array, $search.value)
+    console.log(arrayFiltered);
     arrayFiltered = filterChecks(arrayFiltered)
     return arrayFiltered
 }

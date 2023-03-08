@@ -11,16 +11,12 @@ let categories = createCategories(data.events)
 
 createChecks(categories, $checkbox)
 
-$search.addEventListener('keyup', (e) => {
-    let dataFilter = filterSearch(data.events, e.target.value)
+$search.addEventListener('keyup', () => {
+    let dataFilter = filterAndPrint(data.events)
     createCards(dataFilter, $container)
 })
 
 $checkbox.addEventListener('change', () => {
     let dataFilter = filterAndPrint(data.events)
     createCards(dataFilter, $container)
-    filterChecks(data.events)
 })
-
-
-console.log([document]);
