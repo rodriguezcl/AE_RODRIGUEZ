@@ -88,7 +88,6 @@ export const filterChecks = (array) => {
         filteredArray = []
         for (let i= 0; i < checked.length; i++) {
             filteredArray = filteredArray.concat(array.filter(e => e.category.toLowerCase().includes(checked[i].id)))
-            console.log('filterchecks:', filteredArray);
         }
     }
     return filteredArray
