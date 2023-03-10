@@ -1,7 +1,6 @@
 const fragment = document.createDocumentFragment();
 const $search = document.querySelector('input[placeholder="Search"]');
 
-
 export const createCards = (array, contenedor) => {
     contenedor.innerHTML = ""
     array.forEach((evento) => {
@@ -86,7 +85,7 @@ export const filterChecks = (array) => {
     let filteredArray = array
     if (checked.length > 0) {
         filteredArray = []
-        for (let i= 0; i < checked.length; i++) {
+        for (let i = 0; i < checked.length; i++) {
             filteredArray = filteredArray.concat(array.filter(e => e.category.toLowerCase().includes(checked[i].id)))
         }
     }
