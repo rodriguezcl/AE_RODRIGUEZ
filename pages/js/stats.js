@@ -1,7 +1,7 @@
-import { createCards, createCategories, createChecks, filterAndPrint } from './funciones.js';
+import { createCategories } from './funciones.js';
 
 let data = []
-let categorias = [];
+let categories = [];
 
 async function getData() {
     let apiURL = "../../assets/amazing.json"
@@ -9,7 +9,7 @@ async function getData() {
         .then(res => res.json())
         .then(res => {
             data = res
-            console.log(data);
+            // console.log(data);
             const filterUpcoming = data.events.filter(evento => data.currentDate < evento.date)
             // console.log(filterUpcoming);
             const filterPast = data.events.filter(evento => data.currentDate > evento.date)
@@ -39,18 +39,18 @@ async function getData() {
                 }))
             // console.log("Eventos futuros %", arrayUpcoming);
 
-            function PrintTabla1() {
+            function printTablaInicial() {
                 let listaOrdPast = "";
                 listaOrdPast = arrayPast.filter(p => p.percentage).sort((a, b) => b.percentage - a.percentage)
-                console.log("ordenados por % past", listaOrdPast);
-                console.log(listaOrdPast[0])//mejor porcentaje de asistencia
-                console.log(listaOrdPast[listaOrdPast.length - 1])//ultimo de la lista 
+                // console.log("ordenados por % past", listaOrdPast);
+                // console.log(listaOrdPast[0]) //primero de la listas
+                // console.log(listaOrdPast[listaOrdPast.length - 1]); //ultimo de la lista
 
                 //Evento con mayor capacidad
                 let listaOrdCapacidad = "";
                 listaOrdCapacidad = data.events.filter(evento => evento.capacity).sort((a, b) => b.capacity - a.capacity)
                 // console.log(listaOrdCapacidad);
-                console.log(listaOrdCapacidad[0]);
+                // console.log(listaOrdCapacidad[0]);
 
                 let tablaParte1 = `                        
                             <td>${listaOrdPast[0].name + " " + "(" + listaOrdPast[0].percentage}%)</td>
@@ -59,22 +59,21 @@ async function getData() {
                         `
                 document.querySelector('#tablaParte1').innerHTML = tablaParte1
             }
-            PrintTabla1()
+            printTablaInicial()
 
-            function PrintTablaUpcoming() {
-                categorias = createCategories(filterUpcoming)
-                console.log(categorias);
-                //////////////agrupamos por categoria UPC///////////
+            function printTablaUpcoming() {
+                categories = createCategories(filterUpcoming)
+                // console.log(categories);
                 let porCategoriaUpc = [];
                 let ingresosPorcentajes = [];
-                categorias.forEach(cat => {
+                categories.forEach(cat => {
                     porCategoriaUpc.push({
                         categoria: cat,
                         data: arrayUpcoming.filter(datos => datos.category == cat)
                     })
                 })
-                console.log("AgrupadosPorCat(upc)", porCategoriaUpc);
-                console.log(porCategoriaUpc);
+                // console.log("AgrupadosPorCat(upc)", porCategoriaUpc);
+                // console.log(porCategoriaUpc);
                 porCategoriaUpc.map(datos => {//cada cat con sus datos
                     ingresosPorcentajes.push({
                         category: datos.categoria,
@@ -83,7 +82,7 @@ async function getData() {
                         estimateRevenue: datos.data.map(item => item.estimate * item.price)
                     })
                 })
-                console.log("datosPorCAT(upc)", ingresosPorcentajes);
+                // console.log("datosPorCAT(upc)", ingresosPorcentajes);
                 ingresosPorcentajes.forEach(cat => {
                     let totalEstimate = 0
                     cat.estimate.forEach(estimate => totalEstimate += Number(estimate)) //suma de assistencia
@@ -99,10 +98,10 @@ async function getData() {
 
                     cat.porcentajeAttendace = ((totalEstimate * 100) / totalCapacityFut).toFixed(1) //le agregamos una nueva propiedad, el calculo de % assistencia total por categoria.
                 })
-                console.log(ingresosPorcentajes)
+                // console.log(ingresosPorcentajes)
                 let listOrdCatUpc = ""
                 listOrdCatUpc = ingresosPorcentajes.filter(cat => cat.porcentajeAttendace).sort((a, b) => b.porcentajeAttendace - a.porcentajeAttendace)
-                console.log("OrdenadosPorGanancia(upc)", listOrdCatUpc);
+                // console.log("OrdenadosPorGanancia(upc)", listOrdCatUpc);
 
                 let tablaParte2 = "";
                 listOrdCatUpc.forEach(e => {
@@ -113,12 +112,68 @@ async function getData() {
                     <td>US$ ${e.estimateRevenue}</td>
                     <td>${e.porcentajeAttendace}%</td>
                   </tr>`
-                    document.querySelector('#tbodyT2').innerHTML = tablaParte2
+                    document.querySelector('#tablaParte2').innerHTML = tablaParte2
                 })
             }
-            PrintTablaUpcoming()
+            printTablaUpcoming()
 
-            
+            function printTablaPast() {
+                categories = createCategories(filterPast)
+                // console.log(categories);
+                let porCategoriaPast = [];
+                let ingresosPorcentajes = [];
+                categories.forEach(cat => {
+                    porCategoriaPast.push({
+                        categoria: cat,
+                        data: arrayPast.filter(datos => datos.category == cat)
+                    })
+                })
+                // console.log("AgrupadosPorCat(past)", porCategoriaPast);
+
+                porCategoriaPast.map(datos => {//cada cat con sus datos
+                    ingresosPorcentajes.push({
+                        category: datos.categoria,
+                        assistance: datos.data.map(item => item.assistance),
+                        capacity: datos.data.map(item => item.capacity),
+                        revenue: datos.data.map(item => item.assistance * item.price)
+                    })
+                })
+                // console.log("datosPorCAT(past)", ingresosPorcentajes);
+                ingresosPorcentajes.forEach(cat => {
+                    let totalAssistance = 0
+                    cat.assistance.forEach(assistance => totalAssistance += Number(assistance)) //suma de assistencia
+                    cat.assistance = totalAssistance
+
+                    let totalCapacity = 0
+                    cat.capacity.forEach(capacity => totalCapacity += Number(capacity)) //suma de capacity
+                    cat.capacity = totalCapacity
+
+                    let totalRevenue = 0
+                    cat.revenue.forEach(revenue => totalRevenue += Number(revenue)) //suma de revenue
+                    cat.revenue = totalRevenue
+
+                    cat.porcentajeAttendace = ((totalAssistance * 100) / totalCapacity).toFixed(2) //le agregamos una nueva propiedad, el calculo de % assistencia total por categoria.
+                })
+                // console.log(ingresosPorcentajes)
+                let listOrdCatPast = ""
+                listOrdCatPast = ingresosPorcentajes.filter(cat => cat.porcentajeAttendace).sort((a, b) => b.porcentajeAttendace - a.porcentajeAttendace)
+                // console.log("OrdenadosPorGanancia(upc)", listOrdCatPast);
+
+                var templateTabla3 = "";
+                listOrdCatPast.forEach(e => {
+                    e.listOrdCatUpc
+                    templateTabla3 += `
+                    <tr>
+                    <td>${e.category}</td>
+                    <td>US$ ${e.revenue}</td>
+                    <td>${e.porcentajeAttendace}%</td>
+                  </tr>`
+                    document.querySelector('#tablaParte3').innerHTML = templateTabla3
+                })
+            }
+            printTablaPast()
+
+
         })
         .catch(err => console.log(err))
 }

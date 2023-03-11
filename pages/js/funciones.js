@@ -126,3 +126,4 @@ export const createDetails = (evento, contenedor) => {
     contenedor.appendChild(fragment)
 }
 
+
