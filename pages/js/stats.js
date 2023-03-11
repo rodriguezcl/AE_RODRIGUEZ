@@ -159,16 +159,16 @@ async function getData() {
                 listOrdCatPast = ingresosPorcentajes.filter(cat => cat.porcentajeAttendace).sort((a, b) => b.porcentajeAttendace - a.porcentajeAttendace)
                 // console.log("OrdenadosPorGanancia(upc)", listOrdCatPast);
 
-                var templateTabla3 = "";
+                let tablaParte3 = "";
                 listOrdCatPast.forEach(e => {
                     e.listOrdCatUpc
-                    templateTabla3 += `
+                    tablaParte3 += `
                     <tr>
                     <td>${e.category}</td>
                     <td>US$ ${e.revenue}</td>
                     <td>${e.porcentajeAttendace}%</td>
                   </tr>`
-                    document.querySelector('#tablaParte3').innerHTML = templateTabla3
+                    document.querySelector('#tablaParte3').innerHTML = tablaParte3
                 })
             }
             printTablaPast()
