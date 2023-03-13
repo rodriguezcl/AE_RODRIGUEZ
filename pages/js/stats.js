@@ -9,7 +9,6 @@ async function getData() {
         .then(res => res.json())
         .then(res => {
             data = res
-            // console.log(data);
             const filterUpcoming = data.events.filter(evento => data.currentDate < evento.date)
             // console.log(filterUpcoming);
             const filterPast = data.events.filter(evento => data.currentDate > evento.date)
