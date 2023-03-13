@@ -10,9 +10,7 @@ async function getData() {
         .then(res => {
             data = res
             const filterUpcoming = data.events.filter(evento => data.currentDate < evento.date)
-            // console.log(filterUpcoming);
             const filterPast = data.events.filter(evento => data.currentDate > evento.date)
-            // console.log(filterPast);
             let arrayPast = [];
             filterPast.filter(evento => arrayPast.push(
                 {
@@ -24,7 +22,6 @@ async function getData() {
                     price: evento.price,
                     revenues: evento.assistance * evento.price
                 }))
-            // console.log("Eventos pasados %", arrayPast);
             let arrayUpcoming = [];
             filterUpcoming.filter(evento => arrayUpcoming.push(
                 {
@@ -36,20 +33,13 @@ async function getData() {
                     price: evento.price,
                     revenues: evento.estimate * evento.price
                 }))
-            // console.log("Eventos futuros %", arrayUpcoming);
 
             function printTablaInicial() {
                 let listaOrdPast = "";
                 listaOrdPast = arrayPast.filter(p => p.percentage).sort((a, b) => b.percentage - a.percentage)
-                // console.log("ordenados por % past", listaOrdPast);
-                // console.log(listaOrdPast[0]) //primero de la listas
-                // console.log(listaOrdPast[listaOrdPast.length - 1]); //ultimo de la lista
 
-                //Evento con mayor capacidad
                 let listaOrdCapacidad = "";
                 listaOrdCapacidad = data.events.filter(evento => evento.capacity).sort((a, b) => b.capacity - a.capacity)
-                // console.log(listaOrdCapacidad);
-                // console.log(listaOrdCapacidad[0]);
 
                 let tablaParte1 = `                        
                             <td>${listaOrdPast[0].name + " " + "(" + listaOrdPast[0].percentage}%)</td>
@@ -62,7 +52,6 @@ async function getData() {
 
             function printTablaUpcoming() {
                 categories = createCategories(filterUpcoming)
-                // console.log(categories);
                 let porCategoriaUpc = [];
                 let ingresosPorcentajes = [];
                 categories.forEach(cat => {
@@ -71,9 +60,7 @@ async function getData() {
                         data: arrayUpcoming.filter(datos => datos.category == cat)
                     })
                 })
-                // console.log("AgrupadosPorCat(upc)", porCategoriaUpc);
-                // console.log(porCategoriaUpc);
-                porCategoriaUpc.map(datos => {//cada cat con sus datos
+                porCategoriaUpc.map(datos => {
                     ingresosPorcentajes.push({
                         category: datos.categoria,
                         estimate: datos.data.map(item => item.estimate),
@@ -81,26 +68,23 @@ async function getData() {
                         estimateRevenue: datos.data.map(item => item.estimate * item.price)
                     })
                 })
-                // console.log("datosPorCAT(upc)", ingresosPorcentajes);
                 ingresosPorcentajes.forEach(cat => {
                     let totalEstimate = 0
-                    cat.estimate.forEach(estimate => totalEstimate += Number(estimate)) //suma de assistencia
+                    cat.estimate.forEach(estimate => totalEstimate += Number(estimate))
                     cat.estimate = totalEstimate
 
                     let totalCapacityFut = 0
-                    cat.capacity.forEach(capacity => totalCapacityFut += Number(capacity)) //suma de capacity
+                    cat.capacity.forEach(capacity => totalCapacityFut += Number(capacity))
                     cat.capacity = totalCapacityFut
 
                     let totalEstimateRevenue = 0
-                    cat.estimateRevenue.forEach(estimateRevenue => totalEstimateRevenue += Number(estimateRevenue)) //suma de revenue
+                    cat.estimateRevenue.forEach(estimateRevenue => totalEstimateRevenue += Number(estimateRevenue))
                     cat.estimateRevenue = totalEstimateRevenue
 
-                    cat.porcentajeAttendace = ((totalEstimate * 100) / totalCapacityFut).toFixed(1) //le agregamos una nueva propiedad, el calculo de % assistencia total por categoria.
+                    cat.porcentajeAttendace = ((totalEstimate * 100) / totalCapacityFut).toFixed(1)
                 })
-                // console.log(ingresosPorcentajes)
                 let listOrdCatUpc = ""
                 listOrdCatUpc = ingresosPorcentajes.filter(cat => cat.porcentajeAttendace).sort((a, b) => b.porcentajeAttendace - a.porcentajeAttendace)
-                // console.log("OrdenadosPorGanancia(upc)", listOrdCatUpc);
 
                 let tablaParte2 = "";
                 listOrdCatUpc.forEach(e => {
@@ -108,7 +92,7 @@ async function getData() {
                     tablaParte2 += `
                     <tr>
                     <td>${e.category}</td>
-                    <td>US$ ${e.estimateRevenue}</td>
+                    <td>USD $ ${(e.estimateRevenue).toLocaleString()}</td>
                     <td>${e.porcentajeAttendace}%</td>
                   </tr>`
                     document.querySelector('#tablaParte2').innerHTML = tablaParte2
@@ -118,7 +102,6 @@ async function getData() {
 
             function printTablaPast() {
                 categories = createCategories(filterPast)
-                // console.log(categories);
                 let porCategoriaPast = [];
                 let ingresosPorcentajes = [];
                 categories.forEach(cat => {
@@ -127,9 +110,8 @@ async function getData() {
                         data: arrayPast.filter(datos => datos.category == cat)
                     })
                 })
-                // console.log("AgrupadosPorCat(past)", porCategoriaPast);
 
-                porCategoriaPast.map(datos => {//cada cat con sus datos
+                porCategoriaPast.map(datos => {
                     ingresosPorcentajes.push({
                         category: datos.categoria,
                         assistance: datos.data.map(item => item.assistance),
@@ -137,26 +119,24 @@ async function getData() {
                         revenue: datos.data.map(item => item.assistance * item.price)
                     })
                 })
-                // console.log("datosPorCAT(past)", ingresosPorcentajes);
+
                 ingresosPorcentajes.forEach(cat => {
                     let totalAssistance = 0
-                    cat.assistance.forEach(assistance => totalAssistance += Number(assistance)) //suma de assistencia
+                    cat.assistance.forEach(assistance => totalAssistance += Number(assistance))
                     cat.assistance = totalAssistance
 
                     let totalCapacity = 0
-                    cat.capacity.forEach(capacity => totalCapacity += Number(capacity)) //suma de capacity
+                    cat.capacity.forEach(capacity => totalCapacity += Number(capacity))
                     cat.capacity = totalCapacity
 
                     let totalRevenue = 0
-                    cat.revenue.forEach(revenue => totalRevenue += Number(revenue)) //suma de revenue
+                    cat.revenue.forEach(revenue => totalRevenue += Number(revenue))
                     cat.revenue = totalRevenue
 
-                    cat.porcentajeAttendace = ((totalAssistance * 100) / totalCapacity).toFixed(2) //le agregamos una nueva propiedad, el calculo de % assistencia total por categoria.
+                    cat.porcentajeAttendace = ((totalAssistance * 100) / totalCapacity).toFixed(1)
                 })
-                // console.log(ingresosPorcentajes)
                 let listOrdCatPast = ""
                 listOrdCatPast = ingresosPorcentajes.filter(cat => cat.porcentajeAttendace).sort((a, b) => b.porcentajeAttendace - a.porcentajeAttendace)
-                // console.log("OrdenadosPorGanancia(upc)", listOrdCatPast);
 
                 let tablaParte3 = "";
                 listOrdCatPast.forEach(e => {
@@ -164,7 +144,7 @@ async function getData() {
                     tablaParte3 += `
                     <tr>
                     <td>${e.category}</td>
-                    <td>US$ ${e.revenue}</td>
+                    <td>USD $ ${(e.revenue).toLocaleString()}</td>
                     <td>${e.porcentajeAttendace}%</td>
                   </tr>`
                     document.querySelector('#tablaParte3').innerHTML = tablaParte3
