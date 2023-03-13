@@ -44,7 +44,7 @@ async function getData() {
                 let tablaParte1 = `                        
                             <td>${listaOrdPast[0].name + " " + "(" + listaOrdPast[0].percentage}%)</td>
                             <td>${listaOrdPast[listaOrdPast.length - 1].name + " " + "(" + listaOrdPast[listaOrdPast.length - 1].percentage}%)</td>
-                            <td>${listaOrdCapacidad[0].name + " (Capacity: " + listaOrdCapacidad[0].capacity})</td>
+                            <td>${listaOrdCapacidad[0].name + " (Capacity: " + (listaOrdCapacidad[0].capacity).toLocaleString()})</td>
                         `
                 document.querySelector('#tablaParte1').innerHTML = tablaParte1
             }
