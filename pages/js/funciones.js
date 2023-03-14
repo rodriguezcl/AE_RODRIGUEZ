@@ -2,6 +2,7 @@ const fragment = document.createDocumentFragment();
 const $search = document.querySelector('input[placeholder="Search"]');
 
 export const createCards = (array, contenedor) => {
+    const noResults = document.getElementById('no-results');
     contenedor.innerHTML = ""
     array.forEach((evento) => {
         let div = document.createElement('div');
@@ -22,9 +23,16 @@ export const createCards = (array, contenedor) => {
         fragment.appendChild(div)
     })
     contenedor.appendChild(fragment)
+
+    if (array.length === 0) {
+        noResults.classList.remove('d-none');
+    } else {
+        noResults.classList.add('d-none');
+    }
 }
 
 export const createCardsUpcomingPast = (array, contenedor) => {
+    const noResults = document.getElementById('no-results');
     contenedor.innerHTML = ""
     array.forEach((evento) => {
         let div = document.createElement('div');
@@ -45,6 +53,12 @@ export const createCardsUpcomingPast = (array, contenedor) => {
         fragment.appendChild(div)
     })
     contenedor.appendChild(fragment)
+
+    if (array.length === 0) {
+        noResults.classList.remove('d-none');
+    } else {
+        noResults.classList.add('d-none');
+    }
 }
 
 export const createCategories = (array) => {
