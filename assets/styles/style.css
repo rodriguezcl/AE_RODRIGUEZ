@@ -125,3 +125,13 @@ div>.card-img-top{
 #img-details{
   height: 50%;
 }
+
+.titulo-tabla{
+  background-color: #d90368 !important;
+  color: white !important;
+} 
+
+.subtitulo-tabla{
+  background-color: #060047 !important;
+  color: white !important;
+}
