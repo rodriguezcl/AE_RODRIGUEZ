@@ -22,7 +22,7 @@ async function getData() {
             })
 
             $checkbox.addEventListener('change', () => {
-                let dataFilter = filterAndPrint(filterUpcoming)
+                let dataFilter = filterAndPrint(filterPast)
                 createCardsUpcomingPast(dataFilter, $container)
             })
         })

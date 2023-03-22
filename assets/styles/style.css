@@ -113,17 +113,13 @@ div>.card-body{
 }
 
 div>.card-img-top{
-  height: 300px;
+  height: 36vh
 }
 
 #mainDetails {
   display: flex;
   flex-direction: column;
   gap: 30px;
-}
-
-#img-details{
-  height: 50%;
 }
 
 .titulo-tabla{
@@ -135,3 +131,4 @@ div>.card-img-top{
   background-color: #060047 !important;
   color: white !important;
 }
+
