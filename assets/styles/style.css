@@ -113,7 +113,7 @@ div>.card-body{
 }
 
 div>.card-img-top{
-  height: 36vh
+height: 50vh;
 }
 
 #mainDetails {
@@ -131,6 +131,5 @@ div>.card-img-top{
   background-color: #060047 !important;
   color: white !important;
 }
-
 
 
